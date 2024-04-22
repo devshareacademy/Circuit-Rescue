@@ -8,7 +8,7 @@ A Phaser 3 game that was submitted for the Gavedev.js Jam 2024 game jam.
 
 ![Screenshot 3](/docs/screenshot5.png?raw=true 'Screenshot 3')
 
-You can play the game here: TODO
+You can play the game here on Itch.io: [Circuit Rescue](https://galemius.itch.io/circuit-rescue)
 
 ## Story
 
@@ -65,6 +65,7 @@ This game would not have been possible without the art and audio of these amazin
 | npcs | free-game-assets | [townspeople](https://free-game-assets.itch.io/free-townspeople-cyberpunk-pixel-art) |
 | backgrounds | free-game-assets | [backgrounds](https://free-game-assets.itch.io/free-scrolling-city-backgrounds-pixel-art) |
 | UI Art | sungraphica | [ui](https://sungraphica.itch.io/sci-fi-game-ui-collection-free-version) |
+| UI | kenney | [Onscreen controls](https://www.kenney.nl/assets/onscreen-controls) |
 | music | rustedstudio | [cybertracks](https://rustedstudio.itch.io/cybertracks-volume-1) |
 | sfx | shapeforms | [sfx](https://shapeforms.itch.io/shapeforms-audio-free-sfx) |
 
