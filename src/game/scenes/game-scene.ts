@@ -62,7 +62,7 @@ export default class GameScene extends Phaser.Scene {
     this.#bridges = [];
     this.#currentEnergy = 0;
     this.#maxEnergy = 0;
-    this.#currentLevel = 8;
+    this.#currentLevel = 1;
     this.#finishedLevel = false;
   }
 

@@ -2,6 +2,12 @@
 
 A Phaser 3 game that was submitted for the Gavedev.js Jam 2024 game jam.
 
+![Screenshot 1](/docs/screenshot1.png?raw=true 'Screenshot 1')
+
+![Screenshot 2](/docs/screenshot2.png?raw=true 'Screenshot 2')
+
+![Screenshot 3](/docs/screenshot5.png?raw=true 'Screenshot 3')
+
 You can play the game here: TODO
 
 ## Story
@@ -29,11 +35,15 @@ just need to click on that device in the game. Devices that can be interacted wi
 
 ### Speakers
 
+![Speaker](/docs/speaker.png?raw=true 'Speaker')
+
 Speakers in the game allow you to communicate with the trapped people in each level. As you provide more
 power to each speaker, the louder the range of the speaker, which means you will be able to communicate with
 characters that are further away.
 
 ### Control Panel
+
+![Control Panel](/docs/button.png?raw=true 'Control Panel')
 
 Control panels allow you to modify the power that is supplied to various devices in each level. As you click on
 each control power, you will either add or remove power to each device. Some devices can just be toggled on and
@@ -64,7 +74,7 @@ This game would not have been possible without the art and audio of these amazin
 
 ### Requirements
 
-[Node.js](https://nodejs.org) and [Yarn](https://yarnpkg.com/) are required to install dependencies and run scripts via `yarn`.
+[Node.js](https://nodejs.org) and [pNPm](https://pnpm.io/) are required to install dependencies and run scripts via `pnpm`.
 
 [Vite](https://vitejs.dev/) is required to bundle and serve the web application. This is included as part of the projects dev dependencies.
 
@@ -72,23 +82,23 @@ This game would not have been possible without the art and audio of these amazin
 
 | Command | Description |
 |---------|-------------|
-| `yarn install --frozen-lockfile` | Install project dependencies |
-| `yarn start` | Build project and open web server running project |
-| `yarn build` | Builds code bundle for production |
-| `yarn lint` | Uses ESLint to lint code |
+| `pnpm install --frozen-lockfile` | Install project dependencies |
+| `pnpm start` | Build project and open web server running project |
+| `pnpm build` | Builds code bundle for production |
+| `pnpm lint` | Uses ESLint to lint code |
 
 ### Writing Code
 
-After cloning the repo, run `yarn install --frozen-lockfile` from your project directory. Then, you can start the local development
-server by running `yarn start`.
+After cloning the repo, run `pnpm install --frozen-lockfile` from your project directory. Then, you can start the local development
+server by running `pnpm start`.
 
-After starting the development server with `yarn start`, you can edit any files in the `src` folder
+After starting the development server with `pnpm start`, you can edit any files in the `src` folder
 and parcel will automatically recompile and reload your server (available at `http://localhost:8080`
 by default).
 
 ### Deploying Code
 
-After you run the `yarn build` command, your code will be built into a single bundle located at
+After you run the `pnpm build` command, your code will be built into a single bundle located at
 `dist/*` along with any other assets you project depended.
 
 If you put the contents of the `dist` folder in a publicly-accessible location (say something like `http://myserver.com`),

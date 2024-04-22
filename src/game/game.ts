@@ -11,7 +11,7 @@ export default class Game {
   private readonly game: Phaser.Game;
 
   constructor() {
-    const gameConfig: Phaser.Types.Core.GameConfig = {
+    const gameConfig: Phaser.Types.Core.GameConfig & { fx: { glow: { distance: number; quality: number } } } = {
       type: Phaser.WEBGL,
       pixelArt: true,
       scale: {
@@ -29,6 +29,7 @@ export default class Game {
           debug: false,
           gravity: {
             y: 800,
+            x: 0,
           },
         },
       },

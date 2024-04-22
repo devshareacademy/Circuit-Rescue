@@ -256,7 +256,7 @@ export async function setupLevel1Tutorial(config: LevelData): Promise<void> {
   await waitForInputOnObject(config.npcs[0].sprite);
   arrow.setAlpha(0);
   config.npcs[0].inTutorial = false;
-  config.npcs[0].handlePlayerClick();
+  config.npcs[0].handlePlayerClick(true);
   config.npcs[0].inTutorial = true;
 
   config.infoPanel.updateContent([

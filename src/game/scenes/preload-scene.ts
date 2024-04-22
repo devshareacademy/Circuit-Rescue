@@ -162,7 +162,6 @@ export default class PreloadScene extends Phaser.Scene {
     if (this.#startSceneTransition) {
       return;
     }
-    // TODO: fix fade timer and time check
     if (Date.now() - this.#sceneStartedTime > 1500) {
       this.#startSceneTransition = true;
       this.cameras.main.fadeOut(1000, 0, 0, 0, (camera, progress) => {
