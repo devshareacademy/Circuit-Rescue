@@ -48,7 +48,8 @@ export default class TitleScene extends Phaser.Scene {
       ease: Phaser.Math.Easing.Sine.InOut,
     });
 
-    if (DataUtils.getSavedLevel() !== undefined) {
+    const savedLevelData = DataUtils.getSavedLevel();
+    if (savedLevelData !== undefined && savedLevelData !== 1) {
       const continueGameText = this.add
         .image(width / 2, 220, IMAGE_ASSET_KEYS.TITLE_TEXT_3, 0)
         .setInteractive()
