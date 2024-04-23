@@ -7,7 +7,7 @@ export default class BootScene extends Phaser.Scene {
   }
 
   public preload(): void {
-    this.load.image(IMAGE_ASSET_KEYS.PHASER_LOGO, '/assets/images/phaser-logo.png');
+    this.load.image(IMAGE_ASSET_KEYS.PHASER_LOGO, 'assets/images/phaser-logo.png');
   }
 
   public create(): void {
