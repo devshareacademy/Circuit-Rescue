@@ -135,7 +135,8 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.image(IMAGE_ASSET_KEYS.TITLE_BG_5, '/5.png');
     this.load.setPath('assets/images/title');
     this.load.image(IMAGE_ASSET_KEYS.TITLE_TEXT_1, '/title3.png');
-    this.load.image(IMAGE_ASSET_KEYS.TITLE_TEXT_2, '/title2.png');
+    this.load.image(IMAGE_ASSET_KEYS.TITLE_TEXT_2, '/new_game.png');
+    this.load.image(IMAGE_ASSET_KEYS.TITLE_TEXT_3, '/continue.png');
 
     // load custom fonts
     this.load.addFile(new WebFontFileLoader(this.load, ['Orbitron:400']));

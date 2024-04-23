@@ -51,6 +51,7 @@ export const IMAGE_ASSET_KEYS = {
   TITLE_BG_5: 'TITLE_BG_5',
   TITLE_TEXT_1: 'TITLE_TEXT_1',
   TITLE_TEXT_2: 'TITLE_TEXT_2',
+  TITLE_TEXT_3: 'TITLE_TEXT_3',
 } as const;
 
 export const TUTORIAL_IMAGE_ASSET_KEYS = {

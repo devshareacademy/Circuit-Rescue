@@ -1,5 +1,6 @@
 import { AnimationData, AnimationDataSchema } from '../schema/data-schema';
 import { DATA_ASSET_KEYS } from '../assets/asset-keys';
+import { LOCAL_STORAGE_LEVEL_KEY } from '../config';
 
 export class DataUtils {
   /**
@@ -13,5 +14,26 @@ export class DataUtils {
       return [];
     }
     return parsedData.data;
+  }
+
+  static getSavedLevel(): number | undefined {
+    if (!localStorage) {
+      return;
+    }
+
+    const results = localStorage.getItem(LOCAL_STORAGE_LEVEL_KEY);
+    if (results === null) {
+      return;
+    }
+
+    return parseInt(results, 10);
+  }
+
+  static setSavedLevel(level: number): void {
+    if (!localStorage) {
+      return;
+    }
+
+    localStorage.setItem(LOCAL_STORAGE_LEVEL_KEY, level.toString());
   }
 }

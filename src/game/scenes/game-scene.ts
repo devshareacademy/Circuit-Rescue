@@ -14,8 +14,7 @@ import { Bridge } from '../objects/bridge';
 import { setupTutorial } from '../tutorial/tutorial-utils';
 import { Dialog } from '../objects/dialog';
 import { InfoPanel } from '../objects/info-panel';
-
-const LOCAL_STORAGE_LEVEL_KEY = 'currentLevel';
+import { DataUtils } from '../utils/data-utils';
 
 const BACKGROUND_POSITION = {
   1: { x: 0, y: -200 },
@@ -83,10 +82,14 @@ export default class GameScene extends Phaser.Scene {
     this.#bridges = [];
 
     if (Object.keys(data).length === 0) {
-      this.#getSavedLevel();
+      const savedLevel = DataUtils.getSavedLevel();
+      if (savedLevel !== undefined) {
+        this.#currentLevel = savedLevel;
+      }
     } else {
       this.#currentLevel = data.level;
     }
+
     if (this.#currentLevel === 9) {
       this.#currentLevel = 1;
     }
@@ -269,7 +272,7 @@ export default class GameScene extends Phaser.Scene {
     const hasAllNpcsLeft = this.#npcs.every((npc) => npc.hasExitedLevel);
     if (hasAllNpcsLeft) {
       this.#finishedLevel = true;
-      this.#setSavedLevel(this.#currentLevel + 1);
+      DataUtils.setSavedLevel(this.#currentLevel + 1);
       this.scene.start(SceneKeys.GameScene, { level: (this.#currentLevel += 1) });
     }
   }
@@ -736,26 +739,6 @@ export default class GameScene extends Phaser.Scene {
       return false;
     }
     return Phaser.Input.Keyboard.JustDown(this.#fullScreenKey);
-  }
-
-  #getSavedLevel(): void {
-    if (!localStorage) {
-      return;
-    }
-
-    const results = localStorage.getItem(LOCAL_STORAGE_LEVEL_KEY);
-    if (results === null) {
-      return;
-    }
-    this.#currentLevel = parseInt(results, 10);
-  }
-
-  #setSavedLevel(level: number): void {
-    if (!localStorage) {
-      return;
-    }
-
-    localStorage.setItem(LOCAL_STORAGE_LEVEL_KEY, level.toString());
   }
 
   #pickRandomOverlay(): string {
