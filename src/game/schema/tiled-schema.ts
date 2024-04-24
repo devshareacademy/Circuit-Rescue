@@ -1,3 +1,9 @@
+/**
+ * Contains all of the types and schemas that are tied to the Tiled data files that are loaded in the game.
+ * The types are automatically created by `zod` and these are based on the schemas and enums
+ * that are defined.
+ */
+
 import { z } from 'zod';
 
 export const TiledObjectFlipPropertySchema = z.object({

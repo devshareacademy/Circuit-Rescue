@@ -1,6 +1,19 @@
+/**
+ * Shared game utils that are responsible for creating unique effects in our game.
+ * The utils will make use of the built in Phaser 3 tweens, events, and particles
+ * to enhance our game.
+ */
+
 import { ATLAS_ASSET_KEYS } from '../assets/asset-keys';
 
-export function shake(scene: Phaser.Scene, target: { x: number; y: number }): Phaser.Tweens.Tween {
+/**
+ * Creates a shake like animation effect by using the built in Phaser 3 Tweens. The provided game object
+ * will be the target of the Tween that is created.
+ * @param scene {Phaser.Scene} The Phaser 3 Scene instance that the tween will be added to.
+ * @param target {Phaser.GameObjects.Sprite} The target game object that the effect will be applied to.
+ * @returns {Phaser.Tweens.Tween}
+ */
+export function shake(scene: Phaser.Scene, target: Phaser.GameObjects.Sprite): Phaser.Tweens.Tween {
   const shakeTween = scene.tweens.add({
     targets: target,
     x: target.x + 5,
@@ -15,6 +28,13 @@ export function shake(scene: Phaser.Scene, target: { x: number; y: number }): Ph
   return shakeTween;
 }
 
+/**
+ * Creates a fade out animation effect by using the built in Phaser 3 Tweens. The provided game object
+ * will be the target of the Tween that is created.
+ * @param scene {Phaser.Scene} The Phaser 3 Scene instance that the tween will be added to.
+ * @param target {Phaser.GameObjects.Sprite} The target game object that the effect will be applied to.
+ * @returns {Phaser.Tweens.Tween}
+ */
 export function fadeOut(scene: Phaser.Scene, target: Phaser.GameObjects.Sprite): Phaser.Tweens.Tween {
   const fadeOutTween = scene.tweens.add({
     targets: target,
@@ -27,6 +47,13 @@ export function fadeOut(scene: Phaser.Scene, target: Phaser.GameObjects.Sprite):
   return fadeOutTween;
 }
 
+/**
+ * Creates a flash animation effect by using the built in Phaser 3 Timer Events. The provided game object
+ * will be the target of the effect that is created.
+ * @param scene {Phaser.Scene} The Phaser 3 Scene instance that the effect will be added to.
+ * @param target {Phaser.GameObjects.Sprite} The target game object that the effect will be applied to.
+ * @returns {void}
+ */
 export function flash(scene: Phaser.Scene, target: Phaser.GameObjects.Sprite): void {
   scene.time.addEvent({
     delay: 450,
@@ -47,7 +74,15 @@ export function flash(scene: Phaser.Scene, target: Phaser.GameObjects.Sprite): v
   });
 }
 
-export function explode(scene: Phaser.Scene, target: { x: number; y: number }, callback: () => void = () => {}): void {
+/**
+ * Creates an exploding animation effect by using the built in Phaser 3 ParticleEmitter. The provided game object
+ * will be position of where the effect is added to in the Phaser 3 Scene.
+ * @param scene {Phaser.Scene} The Phaser 3 Scene instance that the effect will be added to.
+ * @param target {Phaser.GameObjects.Sprite} The target game object that the effect will be applied to.
+ * @param callback {() => void} an optional callback function that will be called once the effect is done.
+ * @returns {void}
+ */
+export function explode(scene: Phaser.Scene, target: Phaser.GameObjects.Sprite, callback: () => void = () => {}): void {
   let counter = 0;
   const emitter = scene.add
     .particles(target.x, target.y, ATLAS_ASSET_KEYS.FLARES, {

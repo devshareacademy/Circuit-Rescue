@@ -1,3 +1,8 @@
+/**
+ * Contains all of the Tiled specific layer names from the Tiled map data that is
+ * imported. The Tiled JSON data is the various levels that make up the game.
+ */
+
 export const TILED_LAYER_NAMES = {
   COLLISION: 'collision',
   DOORS: 'doors',

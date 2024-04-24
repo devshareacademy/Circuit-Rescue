@@ -1,3 +1,9 @@
+/**
+ * A Phaser 3 Scene that is shown to the player after they complete all of the
+ * levels in the game. This is just a basic credits scene that gives credit to
+ * the various artists whose art was used in the game.
+ */
+
 import { SceneKeys } from './scene-keys';
 
 const fontStyle: Phaser.Types.GameObjects.Text.TextStyle = {

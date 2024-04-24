@@ -1,3 +1,10 @@
+/**
+ * A custom Phaser 3 Scene that is just a basic title scene
+ * in our game. This scene displays the name of the game and
+ * gives the player options to start a new game or continue
+ * from were they left off.
+ */
+
 import { AUDIO_ASSET_KEYS, IMAGE_ASSET_KEYS } from '../assets/asset-keys';
 import { DataUtils } from '../utils/data-utils';
 import { playBackgroundMusic } from '../utils/sound-utils';

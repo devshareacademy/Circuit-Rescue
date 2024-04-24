@@ -1,3 +1,9 @@
+/**
+ * Contains all of the asset keys that are used for when Phaser 3 loads in the
+ * assets in the `PreLoadScene` class. These keys are then used later in other
+ * Phaser 3 Scenes to grab the cached asset data.
+ */
+
 export const SPRITE_SHEET_ASSET_KEYS = {
   NPC_1_WALK: 'NPC_1_WALK',
   NPC_1_IDLE: 'NPC_1_IDLE',

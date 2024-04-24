@@ -1,10 +1,18 @@
+/**
+ * Shared data utils that are used for working with JSON files and for
+ * saving and loading data to the browser local storage.
+ */
+
 import { AnimationData, AnimationDataSchema } from '../schema/data-schema';
 import { DATA_ASSET_KEYS } from '../assets/asset-keys';
-import { LOCAL_STORAGE_LEVEL_KEY } from '../config';
+
+export const LOCAL_STORAGE_LEVEL_KEY = 'currentLevel';
 
 export class DataUtils {
   /**
-   * Utility function for retrieving the Animation objects from the animations.json data file.
+   * Utility function for retrieving the Animation objects from the `/public/assets/data/animations.json` data file.
+   * @param scene {Phaser.Scene} the Phaser 3 Scene instance that will be used for getting data from the cache.
+   * @returns {AnimationData}
    */
   static getAnimations(scene: Phaser.Scene): AnimationData {
     const rawData: unknown = scene.cache.json.get(DATA_ASSET_KEYS.ANIMATIONS);
@@ -16,6 +24,10 @@ export class DataUtils {
     return parsedData.data;
   }
 
+  /**
+   * Will attempt to load the saved level data from the browser local storage.
+   * @returns {number | undefined}
+   */
   static getSavedLevel(): number | undefined {
     if (!localStorage) {
       return;
@@ -29,6 +41,11 @@ export class DataUtils {
     return parseInt(results, 10);
   }
 
+  /**
+   * Will attempt to save the passed in level number to browser local storage.
+   * @param level {number} the level number that will be saved
+   * @returns {void}
+   */
   static setSavedLevel(level: number): void {
     if (!localStorage) {
       return;

@@ -109,10 +109,26 @@ you should be able to open `http://myserver.com/index.html` and play your game.
 
 Any static assets like images or audio files should be placed in the `public` folder. It'll then be served at `http://localhost:8080/path-to-file-your-file/file-name.file-type`.
 
+### Project Structure
+
+In the project folder, there is a variety of files and folders. At a high level, here is a quick summary of what each folder and file is used for:
+
+```
+.
+├── .vscode          this folder contains github workflows for this project, currently setup to allow deploying the project to itch.io
+├── .vscode          this folder contains configuration files for the VSCode editor, which will add auto linting and custom launch configurations for running tests (if you are not using VSCode, you can remove this folder from the project)
+├── config           this folder contains configuration files for ESLint and TSC (the TypeScript Compiler)
+├── dist             a dynamically generated folder which will contain the compiled source code of the finished library (generated when you run the build script)
+├── docs             this folder contains the images that are used in the README.md
+├── node_modules     a dynamically generated folder which contains the project developer dependencies when working on the library (generated when you run the install script)
+├── public           this folder contains all of the static assets that are used in the game
+├── src              this folder contains all of the core code for the game
+├── .gitignore       this file is used for telling git to ignore certain files in our project (mainly used for our project dependencies and dynamically generated files)
+├── package.json     a configuration file for npm that contains metadata about the project
+├── tsconfig.json    a configuration file for TSC
+├── pnpm-lock.yaml   a configuration file that contains the exact tree structure of the project dependencies and their versions (helps with repeatable project builds)
+
 ## Issues
 
 For any issues you encounter, please open a new [GitHub Issue](https://github.com/devshareacademy/Circuit-Rescue/issues) on this project.
 
-## Questions, Comments, and Suggestions
-
-If you have any questions, comments, or suggestions for future content, please feel free to open a new [GitHub Discussion](https://github.com/orgs/devshareacademy/discussions).

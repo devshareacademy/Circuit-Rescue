@@ -171,16 +171,9 @@ export class NPC {
     flash(this.#scene, this.#sprite);
     this.#scene.time.delayedCall(500, () => {
       fadeOut(this.#scene, this.#sprite);
-      explode(
-        this.#scene,
-        {
-          x: this.#sprite.x + 10,
-          y: this.#sprite.y - 12,
-        },
-        () => {
-          this.#scene.triggerGameOver();
-        },
-      );
+      explode(this.#scene, this.#sprite, () => {
+        this.#scene.triggerGameOver();
+      });
       playSoundFx(this.#scene, AUDIO_ASSET_KEYS.EXPLOSION);
     });
   }

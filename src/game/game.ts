@@ -1,3 +1,16 @@
+/**
+ * Responsible for setting up and creating the Phaser 3 game instance.
+ * Once the Phaser 3 game starts, the game will start off in the `/src/game/scenes/boot-scene.ts`
+ * class.
+ *
+ * In the Phaser 3 game instance, there is a total of 5 Phaser Scenes:
+ *   - BootScene: responsible for loading the assets that are shown during the preload scene
+ *   - PreLoadScene: loads all of the assets needed for the game, shows a loading screen to the player
+ *   - TitleScene: allows player to start or continue their game instance
+ *   - GameScene: core game logic is in this scene, reused for each level
+ *   - CreditsScene: simple credits scene with attributions to the artists that provided assets
+ */
+
 import Phaser from 'phaser';
 import OutlinePipelinePlugin from 'phaser3-rex-plugins/plugins/outlinepipeline-plugin.js';
 import GameScene from './scenes/game-scene';

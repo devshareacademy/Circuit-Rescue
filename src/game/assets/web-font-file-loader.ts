@@ -1,3 +1,8 @@
+/**
+ * A custom Phaser 3 File Loader that is used for loading custom fonts into the game.
+ * This File Loader uses the `webfontloader` library for loading the Google fonts.
+ */
+
 import WebFontLoader from 'webfontloader';
 
 export class WebFontFileLoader extends Phaser.Loader.File {
@@ -17,7 +22,10 @@ export class WebFontFileLoader extends Phaser.Loader.File {
     this.#fontNames = fontNames;
   }
 
-  load() {
+  /**
+   * Loads the provided fonts from Google.
+   */
+  load(): void {
     WebFontLoader.load({
       google: {
         families: this.#fontNames,

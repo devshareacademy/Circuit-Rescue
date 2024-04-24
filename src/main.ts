@@ -1,3 +1,8 @@
+/**
+ * Main entrypoint for the web application. When the index.html file loads, the page calls this
+ * this file, which then creates an instance of the Circuit Rescue game.
+ */
+
 import Game from './game/game';
 
 window.onload = async () => {

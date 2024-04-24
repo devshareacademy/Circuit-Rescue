@@ -1,3 +1,10 @@
+/**
+ * A custom Phaser 3 Scene that is responsible for loading most
+ * of the assets that will be used in the game. The scene will
+ * display a loading page until all assets are ready, and then
+ * transition over to the TitleScene.
+ */
+
 import Phaser from 'phaser';
 import { SceneKeys } from './scene-keys';
 import {
