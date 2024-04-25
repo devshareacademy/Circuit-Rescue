@@ -25,10 +25,20 @@ export default class TitleScene extends Phaser.Scene {
     this.#sceneTransitionStarted = false;
   }
 
+  /**
+   * Initializes the classes main properties to their default values since the instance
+   * of the Scene that is created gets re-used throughout the lifespan of the game. A new
+   * instance is only created when the page is refreshed.
+   */
   public init(): void {
     this.#sceneTransitionStarted = false;
   }
 
+  /**
+   * Triggered when the Scenes Create Lifecycle event is fired. This is responsible for
+   * creating all of the game objects that are used in this Phaser Scene.
+   * @returns {void}
+   */
   public create(): void {
     const { height, width } = this.scale;
     this.cameras.main.fadeIn(1000, 0, 0, 0);
@@ -90,6 +100,11 @@ export default class TitleScene extends Phaser.Scene {
     playBackgroundMusic(this, AUDIO_ASSET_KEYS.BG_2);
   }
 
+  /**
+   * Called each update tick of the game loop. Updates all of the associated game objects positions
+   * and checks for player input.
+   * @returns {void}
+   */
   public update(): void {
     this.#bg1.tilePositionX += 0.2;
     this.#bg2.tilePositionX += 0.3;
@@ -103,6 +118,11 @@ export default class TitleScene extends Phaser.Scene {
     }
   }
 
+  /**
+   * Determines if we need to transition to Game scene once the player clicks on one of the game options. When clicked,
+   * we create a simple fade out effect before starting the next scene.
+   * @returns {void}
+   */
   #startNextScene(): void {
     if (this.#sceneTransitionStarted) {
       return;
@@ -115,6 +135,11 @@ export default class TitleScene extends Phaser.Scene {
     });
   }
 
+  /**
+   * Checks to see if the key assigned to the full screen button was just pressed.
+   * This is for keyboard support in the game.
+   * @returns {boolean}
+   */
   #wasFullScreenKeyPressed() {
     if (this.#fullScreenKey === undefined) {
       return false;

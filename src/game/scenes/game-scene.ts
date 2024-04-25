@@ -312,15 +312,27 @@ export default class GameScene extends Phaser.Scene {
    * @returns {void}
    */
   public npcHasLeftScene(): void {
+    if (this.#finishedLevel) {
+      return;
+    }
+
     const hasAllNpcsLeft = this.#npcs.every((npc) => npc.hasExitedLevel);
     if (hasAllNpcsLeft) {
       this.#finishedLevel = true;
       DataUtils.setSavedLevel(this.#currentLevel + 1);
       if (this.#currentLevel === 8) {
-        this.scene.start(SceneKeys.CreditsScene);
+        this.cameras.main.fadeOut(1000, 0, 0, 0, (camera, progress) => {
+          if (progress === 1) {
+            this.scene.start(SceneKeys.CreditsScene);
+          }
+        });
         return;
       }
-      this.scene.start(SceneKeys.GameScene, { level: (this.#currentLevel += 1) });
+      this.cameras.main.fadeOut(1000, 0, 0, 0, (camera, progress) => {
+        if (progress === 1) {
+          this.scene.start(SceneKeys.GameScene, { level: (this.#currentLevel += 1) });
+        }
+      });
     }
   }
 

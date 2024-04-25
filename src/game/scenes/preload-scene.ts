@@ -29,11 +29,21 @@ export default class PreloadScene extends Phaser.Scene {
     this.#startSceneTransition = false;
   }
 
+  /**
+   * Initializes the classes main properties to their default values since the instance
+   * of the Scene that is created gets re-used throughout the lifespan of the game. A new
+   * instance is only created when the page is refreshed.
+   */
   public init(): void {
     this.#sceneStartedTime = Date.now();
     this.#startSceneTransition = false;
   }
 
+  /**
+   * Triggered when the Scenes Preload Lifecycle event is fired. This is responsible for
+   * queuing up all of the files that we want the Phaser loader to handle.
+   * @returns {void}
+   */
   public preload(): void {
     this.cameras.main.fadeIn(1000, 0, 0, 0);
     this.add.rectangle(0, 0, this.scale.width, this.scale.height, 0x000000, 1).setOrigin(0);
@@ -158,14 +168,28 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.audio(AUDIO_ASSET_KEYS.EXPLOSION, '/explosion.ogg');
   }
 
+  /**
+   * Triggered when the Scenes Create Lifecycle event is fired. This is responsible for
+   * transitioning to the next scene once all of the assets are loaded in the preload method.
+   * @returns {void}
+   */
   public create(): void {
     this.#createAnimations();
   }
 
+  /**
+   * Called each update tick of the game loop. Checks to see if we should transition to the next scene.
+   * @returns {void}
+   */
   public update(): void {
     this.#transitionToNextScene();
   }
 
+  /**
+   * Determines if we need to transition to Title scene once we have all of the assets loaded. When time,
+   * we create a simple fade out effect before starting the next scene.
+   * @returns {void}
+   */
   #transitionToNextScene(): void {
     if (this.#startSceneTransition) {
       return;
@@ -180,6 +204,10 @@ export default class PreloadScene extends Phaser.Scene {
     }
   }
 
+  /**
+   * Creates the various animations that will be used by the Phaser Sprite game objects.
+   * @returns {void}
+   */
   #createAnimations(): void {
     const animations = DataUtils.getAnimations(this);
     animations.forEach((animation) => {

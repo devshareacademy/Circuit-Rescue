@@ -23,6 +23,11 @@ export class CreditsScene extends Phaser.Scene {
     super({ key: SceneKeys.CreditsScene });
   }
 
+  /**
+   * Triggered when the Scenes Create Lifecycle event is fired. This is responsible for
+   * creating all of the game objects that are used in this Phaser Scene.
+   * @returns {void}
+   */
   public create(): void {
     this.cameras.main.fadeIn(1000, 0, 0, 0);
     this.add.rectangle(0, 0, this.scale.width, this.scale.height, 0x000000, 1).setOrigin(0);

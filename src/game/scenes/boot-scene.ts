@@ -13,10 +13,20 @@ export default class BootScene extends Phaser.Scene {
     super({ key: SceneKeys.BootScene });
   }
 
+  /**
+   * Triggered when the Scenes Preload Lifecycle event is fired. This is responsible for
+   * queuing up all of the files that we want the Phaser loader to handle.
+   * @returns {void}
+   */
   public preload(): void {
     this.load.image(IMAGE_ASSET_KEYS.PHASER_LOGO, 'assets/images/phaser-logo.png');
   }
 
+  /**
+   * Triggered when the Scenes Create Lifecycle event is fired. This is responsible for
+   * transitioning to the next scene once all of the assets are loaded in the preload method.
+   * @returns {void}
+   */
   public create(): void {
     this.scene.start(SceneKeys.PreloadScene);
   }
