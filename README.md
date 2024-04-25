@@ -14,7 +14,6 @@ You can play the game here on Itch.io: [Circuit Rescue](https://galemius.itch.io
 
 [<img src="https://i.ytimg.com/vi/-nPV9iv2Dmc/hqdefault.jpg">](https://youtu.be/-nPV9iv2Dmc "Circuit Rescue Gameplay Trailer")
 
-
 ## Story
 
 In the not to distant future, a group of individuals have taken over your town.
@@ -132,8 +131,13 @@ In the project folder, there is a variety of files and folders. At a high level,
 ├── package.json     a configuration file for npm that contains metadata about the project
 ├── tsconfig.json    a configuration file for TSC
 ├── pnpm-lock.yaml   a configuration file that contains the exact tree structure of the project dependencies and their versions (helps with repeatable project builds)
+├── tiled-assets.zip a zip folder containing all of the Tiled levels that were created for this game
+```
+
+### Tiled Files
+
+All of the levels in this game were created using the [Tiled](https://www.mapeditor.org/) map editor. You can find all of these files and the related assets in the `./tiled-assets.zip` folder that is included in this repository.
 
 ## Issues
 
 For any issues you encounter, please open a new [GitHub Issue](https://github.com/devshareacademy/Circuit-Rescue/issues) on this project.
-
