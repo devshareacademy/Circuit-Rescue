@@ -1,3 +1,11 @@
+/**
+ * Creates a Door instance in the game. A door is a simple object that can be
+ * powered by energy in a level. Typically, the exit to the level is protected
+ * by a door that needs to be opened with 3 energy. A door can have a max level
+ * of 3 energy, and a door will only be fully open when the energy level is
+ * set to 3.
+ */
+
 import { ANIMATION_KEY } from '../schema/data-schema';
 import { AUDIO_ASSET_KEYS, SPRITE_SHEET_ASSET_KEYS } from '../assets/asset-keys';
 import GameScene from '../scenes/game-scene';
@@ -47,20 +55,37 @@ export class Door implements ButtonPoweredObject {
     }
   }
 
+  /**
+   * The Phaser Game Object that represents this game object.
+   * @type {Phaser.Types.Physics.Arcade.SpriteWithDynamicBody}
+   */
   get sprite(): Phaser.Types.Physics.Arcade.SpriteWithDynamicBody {
     return this.#sprite;
   }
 
+  /**
+   * The unique id for this object instance.
+   * @type {number}
+   */
   get id(): number {
     return this.#id;
   }
 
+  /**
+   * Indicates if this door is a level opening which should be closed after the npc enters.
+   * @type {boolean}
+   */
   get isLevelEntrance(): boolean {
     return this.#isLevelEntrance;
   }
 
+  /**
+   * Updates the door state to be closed, and then plays the closing door animation.
+   * @returns {Promise<void>}
+   */
   public async closeDoor(): Promise<void> {
     return new Promise((resolve) => {
+      this.#doorState = DOOR_STATE.CLOSED;
       this.#sprite.play(ANIMATION_KEY.DOOR_OPEN_TO_CLOSED);
       this.#sprite.once(Phaser.Animations.Events.ANIMATION_COMPLETE_KEY + ANIMATION_KEY.DOOR_OPEN_TO_CLOSED, () => {
         resolve();
@@ -69,8 +94,9 @@ export class Door implements ButtonPoweredObject {
   }
 
   /**
-   * Sets the initial power level for this object
-   * @param powerLevel the amount of power the connected button has, will be between 0 - 3
+   * Sets the initial power level for this object. Called when a button instance for this object is created.
+   * @param {number} powerLevel the amount of power the connected button has, will be between 0 - 3
+   * @returns {void}
    */
   public setInitialPowerLevel(powerLevel: number): void {
     if (powerLevel === 0) {
@@ -87,8 +113,9 @@ export class Door implements ButtonPoweredObject {
   }
 
   /**
-   *
-   * @param powerLevel the amount of power the connected button has, will be between 0 - 3
+   * Updates the current power level for this object.
+   * @param {number} powerLevel the amount of power the connected button has, will be between 0 - 3
+   * @returns {void}
    */
   public powerLevelChanged(powerLevel: number): void {
     if (!this.#sprite.body.enable) {
@@ -127,6 +154,10 @@ export class Door implements ButtonPoweredObject {
     return;
   }
 
+  /**
+   * Sets the texture for the Phaser Game object.
+   * @returns {void}
+   */
   #setTexture(): void {
     if (this.#doorState === DOOR_STATE.CLOSED) {
       this.#sprite.setFrame(0);

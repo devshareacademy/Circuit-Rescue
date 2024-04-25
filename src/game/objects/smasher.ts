@@ -1,3 +1,9 @@
+/**
+ * Creates a Smasher instance in the game. A smasher game object is one of the
+ * traps that can kill an npc in the game. This trap is attached to the ceiling
+ * in a level and will lower until it collides with the ground.
+ */
+
 import { SPRITE_SHEET_ASSET_KEYS } from '../assets/asset-keys';
 import { TILE_SIZE } from '../config';
 import GameScene from '../scenes/game-scene';
@@ -45,10 +51,18 @@ export class Smasher {
     });
   }
 
+  /**
+   * The Phaser Game Object that represents this game object.
+   * @type {Phaser.GameObjects.Sprite}
+   */
   get sprite(): Phaser.GameObjects.Sprite {
     return this.#mainSprite;
   }
 
+  /**
+   * Creates the full attack animation that is used for this object.
+   * @return {Promise<void>}
+   */
   async #attack(): Promise<void> {
     // shift main sprite down 1 tile
     await this.#moveSpriteForAttack(this.#mainSprite.y + TILE_SIZE);
@@ -63,6 +77,10 @@ export class Smasher {
     await this.#attack();
   }
 
+  /**
+   * Creates part of the attack animation that is used for this object.
+   * @return {Promise<void>}
+   */
   async #moveSpriteForAttack(targetYPosition: number): Promise<void> {
     return new Promise((resolve) => {
       this.#scene.tweens.add({
@@ -76,6 +94,10 @@ export class Smasher {
     });
   }
 
+  /**
+   * Creates part of the attack animation that is used for this object.
+   * @return {Promise<void>}
+   */
   async #attackPart1(): Promise<void> {
     return new Promise((resolve) => {
       this.#mainSprite.play(ANIMATION_KEY.HAMMER_DOWN);
@@ -85,6 +107,10 @@ export class Smasher {
     });
   }
 
+  /**
+   * Creates part of the attack animation that is used for this object.
+   * @return {Promise<void>}
+   */
   async #attackPart2(): Promise<void> {
     return new Promise((resolve) => {
       this.#mainSprite.playReverse(ANIMATION_KEY.HAMMER_DOWN);

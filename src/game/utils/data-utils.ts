@@ -11,7 +11,7 @@ export const LOCAL_STORAGE_LEVEL_KEY = 'currentLevel';
 export class DataUtils {
   /**
    * Utility function for retrieving the Animation objects from the `/public/assets/data/animations.json` data file.
-   * @param scene {Phaser.Scene} the Phaser 3 Scene instance that will be used for getting data from the cache.
+   * @param {Phaser.Scene} scene the Phaser 3 Scene instance that will be used for getting data from the cache.
    * @returns {AnimationData}
    */
   static getAnimations(scene: Phaser.Scene): AnimationData {
@@ -43,7 +43,7 @@ export class DataUtils {
 
   /**
    * Will attempt to save the passed in level number to browser local storage.
-   * @param level {number} the level number that will be saved
+   * @param {number} level the level number that will be saved
    * @returns {void}
    */
   static setSavedLevel(level: number): void {

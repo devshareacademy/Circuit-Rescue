@@ -1,3 +1,10 @@
+/**
+ * Creates a Speaker instance in the game. A speaker is an object that can be used
+ * for communicating with a npc in the game. A speaker can have a max level of 3 power.
+ * The power to the speaker is used to determine the range the speaker can reach, and so
+ * the more power has a speaker has, the further the npc can be from the speaker.
+ */
+
 import { AUDIO_ASSET_KEYS, IMAGE_ASSET_KEYS, SPRITE_SHEET_ASSET_KEYS } from '../assets/asset-keys';
 import GameScene from '../scenes/game-scene';
 import { playSoundFx } from '../utils/sound-utils';
@@ -49,22 +56,42 @@ export class Speaker {
     });
   }
 
+  /**
+   * The Phaser Game Object that represents this game object.
+   * @type {Phaser.GameObjects.Sprite}
+   */
   get sprite(): Phaser.GameObjects.Sprite {
     return this.#sprite;
   }
 
+  /**
+   * The Phaser Game Object that represents the speakers range.
+   * @type {Phaser.GameObjects.Image}
+   */
   get speakerRange(): Phaser.GameObjects.Image {
     return this.#speakerRange;
   }
 
+  /**
+   * The current energy level of this object.
+   * @type {number}
+   */
   get currentEnergy(): number {
     return this.#energyLevel;
   }
 
+  /**
+   * Mark the object as being used in the tutorial so the regular functionality is disabled.
+   * @type {boolean}
+   */
   set inTutorial(val: boolean) {
     this.#inTutorial = val;
   }
 
+  /**
+   * Called each update tick of the game loop.
+   * @returns {void}
+   */
   public update(): void {
     if (this.#speakerRange.alpha === 0) {
       return;
@@ -72,6 +99,12 @@ export class Speaker {
     this.#speakerRange.angle += 0.5;
   }
 
+  /**
+   * Handles player input. When this object is clicked on, we update the energy
+   * level based on if the player has energy available, and then we update the
+   * associated sprites to match the provided energy level.
+   * @returns {void}
+   */
   public handlePlayerClick(): void {
     if (this.#inTutorial) {
       return;
@@ -94,6 +127,10 @@ export class Speaker {
     playSoundFx(this.#scene, AUDIO_ASSET_KEYS.SPEAKER_BEEP);
   }
 
+  /**
+   * Sets the texture for the Phaser Game object.
+   * @returns {void}
+   */
   #setTexture(): void {
     if (this.#energyLevel === 0) {
       this.#sprite.setFrame(0);
@@ -110,6 +147,11 @@ export class Speaker {
     this.#sprite.setFrame(3);
   }
 
+  /**
+   * Updates the game object associated with the speaker range. The range
+   * is directly related to the amount of energy this object has.
+   * @returns {void}
+   */
   #displaySpeakerRange(show: boolean): void {
     if (this.#energyLevel === 0) {
       this.#speakerRange.setScale(0.01);

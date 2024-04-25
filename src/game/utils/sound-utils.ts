@@ -5,8 +5,8 @@
 /**
  * Will stop all other music in a Phaser 3 Scene instance and start playing the audio file
  * associated with the cache key that is provided. The audio will play in a loop until.
- * @param scene {Phaser.Scene} The Phaser 3 Scene instance the sound file will play in.
- * @param audioKey {string} The unique key tied to the asset that will be played. This is the key that
+ * @param {Phaser.Scene} scene The Phaser 3 Scene instance the sound file will play in.
+ * @param {string} audioKey The unique key tied to the asset that will be played. This is the key that
  *                 was used when the asset was loaded by Phaser (in the PreloadScene class).
  * @returns {void}
  */
@@ -34,8 +34,8 @@ export function playBackgroundMusic(scene: Phaser.Scene, audioKey: string): void
 /**
  * Used for playing simple sound effects in a Phaser 3 Scene instance. The audio file
  * associated with the cache key that is provided will be played one time.
- * @param scene {Phaser.Scene} The Phaser 3 Scene instance the sound file will play in.
- * @param audioKey {string} The unique key tied to the asset that will be played. This is the key that
+ * @param {Phaser.Scene} scene The Phaser 3 Scene instance the sound file will play in.
+ * @param {string} audioKey The unique key tied to the asset that will be played. This is the key that
  *                 was used when the asset was loaded by Phaser (in the PreloadScene class).
  * @returns {void}
  */

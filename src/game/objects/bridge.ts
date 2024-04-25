@@ -1,9 +1,15 @@
+/**
+ * Creates a Bridge instance in the game. A bridge, or elevator, can be a powered
+ * object that moves in the game. The bridge object is setup to have a max power
+ * amount or 1, so the object can only be moving or non-moving.
+ */
+
 import { IMAGE_ASSET_KEYS, SPRITE_SHEET_ASSET_KEYS } from '../assets/asset-keys';
 import GameScene from '../scenes/game-scene';
 import { ButtonPoweredObject } from './button-powered-object';
 import { TILE_SIZE } from '../config';
 
-type DoorConfig = {
+type BridgeConfig = {
   scene: GameScene;
   x: number;
   y: number;
@@ -13,6 +19,11 @@ type DoorConfig = {
   height: number;
 };
 
+/**
+ * Represents the various states that the bridge can be in. The safe
+ * states are meant to represent when it is safe for the player to be
+ * able to move onto the game object.
+ */
 const BRIDGE_STATE = {
   ON: 'ON',
   ON_SAFE: 'ON_SAFE',
@@ -42,7 +53,7 @@ export class Bridge implements ButtonPoweredObject {
   #bridgeMovementTween: Phaser.Tweens.Tween | undefined;
   #powerLevel: number;
 
-  constructor(config: DoorConfig) {
+  constructor(config: BridgeConfig) {
     this.#id = config.id;
     this.#scene = config.scene;
     this.#bridgeState = BRIDGE_STATE.OFF;
@@ -65,17 +76,26 @@ export class Bridge implements ButtonPoweredObject {
       .setAllowGravity(false);
   }
 
+  /**
+   * The unique id for this object instance.
+   * @type {number}
+   */
   get id(): number {
     return this.#id;
   }
 
+  /**
+   * The Phaser Container that contains the game objects that make up the bridge.
+   * @type {Phaser.GameObjects.Container}
+   */
   get bridgeContainer(): Phaser.GameObjects.Container {
     return this.#spriteContainer;
   }
 
   /**
-   * Sets the initial power level for this object
-   * @param powerLevel the amount of power the connected button has, will be between 0 - 1 for bridges
+   * Sets the initial power level for this object. Called when a button instance for this object is created.
+   * @param {number} powerLevel the amount of power the connected button has, will be between 0 - 3
+   * @returns {void}
    */
   public setInitialPowerLevel(powerLevel: number): void {
     this.#powerLevel = powerLevel;
@@ -88,8 +108,9 @@ export class Bridge implements ButtonPoweredObject {
   }
 
   /**
-   *
-   * @param powerLevel the amount of power the connected button has, will be between 0 - 3
+   * Updates the current power level for this object.
+   * @param {number} powerLevel the amount of power the connected button has, will be between 0 - 3
+   * @returns {void}
    */
   public powerLevelChanged(powerLevel: number): void {
     this.#powerLevel = powerLevel;
@@ -101,6 +122,10 @@ export class Bridge implements ButtonPoweredObject {
     this.#handleBridgeMovement();
   }
 
+  /**
+   * Creates the Phaser game objects that are associated with this Bridge instance.
+   * @returns {void}
+   */
   #createBridgeSprites(): void {
     const leftBridgeRail = this.#scene.add.sprite(8, -1 * TILE_SIZE, SPRITE_SHEET_ASSET_KEYS.FENCE, 0).setOrigin(0, 1);
     const midBridgeRail = this.#scene.add
@@ -154,6 +179,12 @@ export class Bridge implements ButtonPoweredObject {
     ]);
   }
 
+  /**
+   * Contains all of the logic for handling the bridge movement. This method will check the state
+   * of the bridge, and then determine the next stop that the bridge should move to if the bridge
+   * is currently in the state for moving. The bridge will then be moved using a Phaser Tween.
+   * @returns {void}
+   */
   #handleBridgeMovement(): void {
     if (this.#powerLevel === 0) {
       this.#bridgeState = BRIDGE_STATE.OFF;

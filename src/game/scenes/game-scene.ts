@@ -80,7 +80,7 @@ export default class GameScene extends Phaser.Scene {
    * Initializes the classes main properties to their default values since the instance
    * of the Scene that is created gets re-used throughout the lifespan of the game. A new
    * instance is only created when the page is refreshed.
-   * @param data {GameSceneData} the data object that is passed when the scene is initialized.
+   * @param {GameSceneData} data the data object that is passed when the scene is initialized.
    */
   public init(data: GameSceneData): void {
     this.#finishedLevel = false;
@@ -298,7 +298,7 @@ export default class GameScene extends Phaser.Scene {
 
   /**
    * Updates the current energy that is available to the player.
-   * @param energyAmount {number} the amount of energy to add or take from the player
+   * @param {number} energyAmount the amount of energy to add or take from the player
    * @returns {void}
    */
   public updateEnergy(energyAmount: number): void {
@@ -353,7 +353,7 @@ export default class GameScene extends Phaser.Scene {
   /**
    * Creates the exit zone for the level, which the NPC must cross to successfully complete the level. This
    * object is created from the object layer data in the Tiled JSON map file.
-   * @param tiledMapData {Phaser.Tilemaps.Tilemap} the Tiled map data that will be used for getting objects from.
+   * @param {Phaser.Tilemaps.Tilemap} tiledMapData the Tiled map data that will be used for getting objects from.
    * @returns {Phaser.GameObjects.Zone | undefined}
    */
   #createExitZone(tiledMapData: Phaser.Tilemaps.Tilemap): Phaser.GameObjects.Zone | undefined {
@@ -379,7 +379,7 @@ export default class GameScene extends Phaser.Scene {
 
   /**
    * Creates the npcs for the current level. These objects are created from the object layer data in the Tiled JSON map file.
-   * @param tiledMapData {Phaser.Tilemaps.Tilemap} the Tiled map data that will be used for getting objects from.
+   * @param {Phaser.Tilemaps.Tilemap} tiledMapData the Tiled map data that will be used for getting objects from.
    * @returns {NPC[]}
    */
   #createNpcs(tiledMapData: Phaser.Tilemaps.Tilemap): NPC[] {
@@ -409,7 +409,7 @@ export default class GameScene extends Phaser.Scene {
    * Creates the door objects for the current level. These objects are created from the object layer data in the Tiled JSON map file.
    * These objects are placed in a group so we can do a collision check between the door group and each npc
    * in the current level.
-   * @param tiledMapData {Phaser.Tilemaps.Tilemap} the Tiled map data that will be used for getting objects from.
+   * @param {Phaser.Tilemaps.Tilemap} tiledMapData the Tiled map data that will be used for getting objects from.
    * @returns {Phaser.Physics.Arcade.Group}
    */
   #createDoors(tiledMapData: Phaser.Tilemaps.Tilemap): Phaser.Physics.Arcade.Group {
@@ -447,7 +447,7 @@ export default class GameScene extends Phaser.Scene {
 
   /**
    * Creates the button objects for the current level. These objects are created from the object layer data in the Tiled JSON map file.
-   * @param tiledMapData {Phaser.Tilemaps.Tilemap} the Tiled map data that will be used for getting objects from.
+   * @param {Phaser.Tilemaps.Tilemap} tiledMapData the Tiled map data that will be used for getting objects from.
    * @returns {Button[]}
    */
   #createButtons(tiledMapData: Phaser.Tilemaps.Tilemap): Button[] {
@@ -497,7 +497,7 @@ export default class GameScene extends Phaser.Scene {
    * Example, there is a button to add/remove energy to a door. The button object in Tiled will have a property
    * called `objectId` which is the id of the associated object. There is another property called `activeObjectType`
    * which is used for knowing what type of object is associated with the button.
-   * @param objectProperties {TiledSchema.TiledObjectProperty[]} the Tiled object properties to search through.
+   * @param {TiledSchema.TiledObjectProperty[]} objectProperties the Tiled object properties to search through.
    * @returns {Door | Belt | Bridge | undefined}
    */
   #getButtonConnectedObject(objectProperties: TiledSchema.TiledObjectProperty[]): Door | Belt | Bridge | undefined {
@@ -540,7 +540,7 @@ export default class GameScene extends Phaser.Scene {
 
   /**
    * Creates the speaker objects for the current level. These objects are created from the object layer data in the Tiled JSON map file.
-   * @param tiledMapData {Phaser.Tilemaps.Tilemap} the Tiled map data that will be used for getting objects from.
+   * @param {Phaser.Tilemaps.Tilemap} tiledMapData the Tiled map data that will be used for getting objects from.
    * @returns {Speaker[]}
    */
   #createSpeakers(tiledMapData: Phaser.Tilemaps.Tilemap): Speaker[] {
@@ -580,7 +580,7 @@ export default class GameScene extends Phaser.Scene {
    *
    * Example, if we want a door to face left or right, the flip property will indicate what value to set for the
    * `flipX` method on the game object in Phaser.
-   * @param objectProperties {TiledSchema.TiledObjectProperty[]} the Tiled object properties to search through.
+   * @param {TiledSchema.TiledObjectProperty[]} objectProperties the Tiled object properties to search through.
    * @returns {boolean}
    */
   #shouldFlipGameObject(objectProperties: TiledSchema.TiledObjectProperty[]): boolean {
@@ -600,7 +600,7 @@ export default class GameScene extends Phaser.Scene {
    * automatically close when the player enters the level. This is used for the custom scene entrance when the player
    * enters the 2nd level and higher.
    * This method parses that data from the JSON file.
-   * @param objectProperties {TiledSchema.TiledObjectProperty[]} the Tiled object properties to search through.
+   * @param {TiledSchema.TiledObjectProperty[]} objectProperties the Tiled object properties to search through.
    * @returns {boolean}
    */
   #isDoorLevelEntrance(objectProperties: TiledSchema.TiledObjectProperty[]): boolean {
@@ -623,7 +623,7 @@ export default class GameScene extends Phaser.Scene {
    * This method parses that data from the JSON file.
    *
    * Example, when the first level starts, one of the doors has 0 energy while the exit door has 3 energy.
-   * @param objectProperties {TiledSchema.TiledObjectProperty[]} the Tiled object properties to search through.
+   * @param {TiledSchema.TiledObjectProperty[]} objectProperties the Tiled object properties to search through.
    * @returns {number}
    */
   #getEnergyDetailsFromObject(objectProperties: TiledSchema.TiledObjectProperty[]): number {
@@ -647,7 +647,7 @@ export default class GameScene extends Phaser.Scene {
    *
    * Example, some buttons allow you to add up to 3 energy to a door or speaker. The max value is pulled from
    * the level data.
-   * @param objectProperties {TiledSchema.TiledObjectProperty[]} the Tiled object properties to search through.
+   * @param {TiledSchema.TiledObjectProperty[]} objectProperties the Tiled object properties to search through.
    * @returns {number}
    */
   #getMaxEnergyDetailsFromObject(objectProperties: TiledSchema.TiledObjectProperty[]): number {
@@ -665,7 +665,7 @@ export default class GameScene extends Phaser.Scene {
   /**
    * For each game object that we create from Tiled, there is a unique id associated with that object.
    * This method parses that data from the JSON file.
-   * @param objectProperties {TiledSchema.TiledObjectProperty[]} the Tiled object properties to search through.
+   * @param {TiledSchema.TiledObjectProperty[]} objectProperties the Tiled object properties to search through.
    * @returns {number}
    */
   #getIdFromObject(objectProperties: TiledSchema.TiledObjectProperty[]): number {
@@ -684,7 +684,7 @@ export default class GameScene extends Phaser.Scene {
    * For each the smasher game objects, the Tiled JSON data includes a field for knowing how long to wait
    * before the first time the object attempts to crush the player. This method parses that data from the JSON
    * file.
-   * @param objectProperties {TiledSchema.TiledObjectProperty[]} the Tiled object properties to search through.
+   * @param {TiledSchema.TiledObjectProperty[]} objectProperties the Tiled object properties to search through.
    * @returns {number}
    */
   #getDelayFromStart(objectProperties: TiledSchema.TiledObjectProperty[]): number {
@@ -705,7 +705,7 @@ export default class GameScene extends Phaser.Scene {
    * For each the smasher game objects, the Tiled JSON data includes a field for knowing how long to wait
    * before each time the object attempts to crush the player. This method parses that data from the JSON
    * file.
-   * @param objectProperties {TiledSchema.TiledObjectProperty[]} the Tiled object properties to search through.
+   * @param {TiledSchema.TiledObjectProperty[]} objectProperties the Tiled object properties to search through.
    * @returns {number}
    */
   #getDelayBetweenAttacks(objectProperties: TiledSchema.TiledObjectProperty[]): number {
@@ -724,7 +724,7 @@ export default class GameScene extends Phaser.Scene {
 
   /**
    * Creates the main collision layer for the current level based on the object layer in the Tiled JSON data file.
-   * @param tiledMapData {Phaser.Tilemaps.Tilemap} the Tiled map data that will be used for getting objects from.
+   * @param {Phaser.Tilemaps.Tilemap} tiledMapData the Tiled map data that will be used for getting objects from.
    * @returns {Phaser.Tilemaps.TilemapLayer | undefined }
    */
   #createCollisionLayer(tiledMapData: Phaser.Tilemaps.Tilemap): Phaser.Tilemaps.TilemapLayer | undefined {
@@ -747,7 +747,7 @@ export default class GameScene extends Phaser.Scene {
   /**
    * Calculates how much energy is in a given level and how much the energy the player starts with when
    * the level starts. These values are determined based on the Tiled JSON data that is parsed from the map data.
-   * @param tiledMapData {Phaser.Tilemaps.Tilemap} the Tiled map data that will be used for getting objects from.
+   * @param {Phaser.Tilemaps.Tilemap} tiledMapData the Tiled map data that will be used for getting objects from.
    * @returns {void}
    */
   #calculateEnergy(tiledMapData: Phaser.Tilemaps.Tilemap): void {
@@ -778,7 +778,7 @@ export default class GameScene extends Phaser.Scene {
 
   /**
    * Creates the belt objects for the current level. These objects are created from the object layer data in the Tiled JSON map file.
-   * @param tiledMapData {Phaser.Tilemaps.Tilemap} the Tiled map data that will be used for getting objects from.
+   * @param {Phaser.Tilemaps.Tilemap} tiledMapData the Tiled map data that will be used for getting objects from.
    * @returns {Belt[]}
    */
   #createBelts(tiledMapData: Phaser.Tilemaps.Tilemap): Belt[] {
@@ -812,7 +812,7 @@ export default class GameScene extends Phaser.Scene {
 
   /**
    * Creates the smasher objects for the current level. These objects are created from the object layer data in the Tiled JSON map file.
-   * @param tiledMapData {Phaser.Tilemaps.Tilemap} the Tiled map data that will be used for getting objects from.
+   * @param {Phaser.Tilemaps.Tilemap} tiledMapData the Tiled map data that will be used for getting objects from.
    * @returns {Smasher[]}
    */
   #createSmashers(tiledMapData: Phaser.Tilemaps.Tilemap): Smasher[] {
@@ -847,7 +847,7 @@ export default class GameScene extends Phaser.Scene {
 
   /**
    * Creates the bridge objects for the current level. These objects are created from the object layer data in the Tiled JSON map file.
-   * @param tiledMapData {Phaser.Tilemaps.Tilemap} the Tiled map data that will be used for getting objects from.
+   * @param {Phaser.Tilemaps.Tilemap} tiledMapData the Tiled map data that will be used for getting objects from.
    * @returns {Bridge[]}
    */
   #createBridges(tiledMapData: Phaser.Tilemaps.Tilemap): Bridge[] {
@@ -891,7 +891,7 @@ export default class GameScene extends Phaser.Scene {
    * For each bridge/elevator in the game, the Tiled JSON data has an array of stops, which represents the
    * Y coordinates of where the bridge/elevator can stop in the game. These values are used for positioning
    * the game object and for knowing which position to move the bridge to.
-   * @param objectProperties {TiledSchema.TiledObjectProperty[]} the Tiled object properties to search through.
+   * @param {TiledSchema.TiledObjectProperty[]} objectProperties the Tiled object properties to search through.
    * @returns {number[]}
    */
   #getStopsFromObject(objectProperties: TiledSchema.TiledObjectProperty[]): number[] {
@@ -910,7 +910,7 @@ export default class GameScene extends Phaser.Scene {
    * For each bridge/elevator in the game, the object might have a button associated with it, which allows the
    * player to turn the bridge/elevator on/off in the game. If there is no button, then the bridge elevator
    * will either be stationary or constantly moving.
-   * @param objectProperties {TiledSchema.TiledObjectProperty[]} the Tiled object properties to search through.
+   * @param {TiledSchema.TiledObjectProperty[]} objectProperties the Tiled object properties to search through.
    * @returns {boolean}
    */
   #doesBridgeHaveNoButton(objectProperties: TiledSchema.TiledObjectProperty[]): boolean {

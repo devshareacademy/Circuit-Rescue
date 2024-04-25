@@ -1,3 +1,11 @@
+/**
+ * Creates a Button instance in the game. A button is a mechanism that allows a player
+ * to control the amount of energy that currently associated with another game object
+ * in the scene (belts, bridges, doors, etc). When a button is clicked, energy will
+ * either be transferred to the connected object, or removed depending on if the object
+ * was already at max capacity based on the current energy the player has.
+ */
+
 import { AUDIO_ASSET_KEYS, SPRITE_SHEET_ASSET_KEYS } from '../assets/asset-keys';
 import GameScene from '../scenes/game-scene';
 import { playSoundFx } from '../utils/sound-utils';
@@ -43,18 +51,36 @@ export class Button {
     this.#connectedObject.setInitialPowerLevel(this.#energyLevel);
   }
 
+  /**
+   * The Phaser Game Object that represents this game object.
+   * @type {Phaser.GameObjects.Sprite}
+   */
   get sprite(): Phaser.GameObjects.Sprite {
     return this.#sprite;
   }
 
+  /**
+   * The current energy level of this object.
+   * @type {number}
+   */
   get currentEnergy(): number {
     return this.#energyLevel;
   }
 
+  /**
+   * Mark the object as being used in the tutorial so the regular functionality is disabled.
+   * @type {boolean}
+   */
   set inTutorial(val: boolean) {
     this.#inTutorial = val;
   }
 
+  /**
+   * Handles player input. When this object is clicked on, we update the energy
+   * level based on if the player has energy available, and then we update the
+   * associated sprites to match the provided energy level.
+   * @returns {void}
+   */
   public handlePlayerClick(): void {
     if (this.#inTutorial) {
       return;
@@ -77,6 +103,10 @@ export class Button {
     playSoundFx(this.#scene, AUDIO_ASSET_KEYS.SWITCH_BEEP);
   }
 
+  /**
+   * Sets the texture for the Phaser Game object.
+   * @returns {void}
+   */
   #setTexture(): void {
     if (this.#energyLevel === 0) {
       this.#sprite.setFrame(0);
