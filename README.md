@@ -10,6 +10,11 @@ A Phaser 3 game that was submitted for the Gavedev.js Jam 2024 game jam.
 
 You can play the game here on Itch.io: [Circuit Rescue](https://galemius.itch.io/circuit-rescue)
 
+## Gameplay Trailer
+
+[<img src="https://i.ytimg.com/vi/-nPV9iv2Dmc/hqdefault.jpg">](https://youtu.be/-nPV9iv2Dmc "Circuit Rescue Gameplay Trailer")
+
+
 ## Story
 
 In the not to distant future, a group of individuals have taken over your town.
